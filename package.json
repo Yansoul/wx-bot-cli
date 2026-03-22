@@ -1,14 +1,18 @@
 {
   "name": "wx-bot-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "WeChat AI Bot CLI and TUI dashboard",
   "license": "MIT",
   "type": "module",
   "bin": {
     "wxbot": "./dist/bin.js"
   },
-  "files": ["dist/"],
-  "engines": { "node": ">=22" },
+  "files": [
+    "dist/"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
@@ -16,7 +20,7 @@
     "prepublishOnly": "npm run typecheck && npm run build"
   },
   "dependencies": {
-    "better-sqlite3": "^9.6.0",
+    "better-sqlite3": "^12.4.5",
     "commander": "^12.0.0",
     "ink": "^5.0.0",
     "qrcode-terminal": "^0.12.0",
