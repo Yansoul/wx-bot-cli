@@ -2,9 +2,15 @@
 
 [English](README.en.md)
 
-基于微信 iLink API 的命令行 Bot 工具，提供扫码登录、消息收发、SQLite 持久化存储，以及 Ink 终端看板（TUI）。
+![wxbot TUI 界面](docs/images/hero.png)
 
-后台守护进程由 **launchd**（macOS）或 **systemd**（Linux）托管，开机自启、崩溃自恢复。
+`wxbot` 是一个微信机器人命令行工具，基于微信 iLink API，提供扫码登录、消息收发、SQLite 持久化存储，以及 Ink 终端看板（TUI）。
+
+它以守护进程的形式常驻后台（由 **launchd** / **systemd** 托管，开机自启、崩溃自恢复），随时待命接受调用——这让它天然适合以下几类场景：
+
+- **多平台调用**：在 Claude、OpenClaw 等任意 AI 实例中，一条命令即可发出微信消息，无需关心当前在哪个平台。
+- **脚本与自动化通知**：嵌入到部署流程、定时任务或监控告警中，让关键事件的通知自动送达微信。
+- **接入 Agent 应用**：开发 Agent 时无需额外插件，通过 Agent + Skill 直接调用 CLI，即可快速获得微信消息发送能力。
 
 ---
 
