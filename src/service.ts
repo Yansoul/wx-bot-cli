@@ -3,7 +3,7 @@ import net from 'node:net';
 import { apiPost, LONG_POLL_TIMEOUT_MS } from './api.js';
 import { sendTextMessage } from './api.js';
 import { loadSession } from './auth.js';
-import { openDb, insertMessage, countMessages } from './db.js';
+import { openDb, insertMessage, countMessages, checkpointWal } from './db.js';
 import { createIpcServer } from './ipc.js';
 import { DATA_DIR, SESSION_PATH, DB_PATH, SOCKET_PATH, PID_PATH, LOG_PATH } from './paths.js';
 import type { IpcRequest, IpcResponse, UserSession } from './types.js';
@@ -135,6 +135,7 @@ export async function runService(): Promise<void> {
         text: req.text,
         context_token: us.contextToken,
       });
+      checkpointWal(db);
 
       // Auto-notification at 9th message
       if (shouldAutoNotify(state, state.activeUser)) {
@@ -154,6 +155,7 @@ export async function runService(): Promise<void> {
             text: noticeText,
             context_token: us.contextToken,
           });
+          checkpointWal(db);
         } catch (err) {
           logLine('ERROR', 'auto-notification send failed', { err: String(err) });
         }
@@ -229,6 +231,7 @@ export async function runService(): Promise<void> {
             text: texts.join(' '),
             context_token: contextToken || null,
           });
+          checkpointWal(db);
           logLine('INFO', 'inbound message stored', { from, textLen: texts.join(' ').length });
         }
       }

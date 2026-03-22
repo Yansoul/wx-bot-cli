@@ -44,3 +44,7 @@ export function countMessages(db: DbInstance): number {
   const row = db.prepare('SELECT COUNT(*) as n FROM messages').get() as { n: number };
   return row.n;
 }
+
+export function checkpointWal(db: DbInstance): void {
+  db.pragma('wal_checkpoint(PASSIVE)');
+}
