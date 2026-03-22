@@ -28,7 +28,7 @@ function isAbortError(err: unknown): boolean {
   if (!(err instanceof Error)) return false;
   if (err.name === 'AbortError') return true;
   const cause = (err as Error & { cause?: Error }).cause;
-  return cause?.name === 'AbortError' ?? false;
+  return cause?.name === 'AbortError' || false;
 }
 
 export async function apiPost(params: {
