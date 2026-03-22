@@ -1,6 +1,6 @@
 {
   "name": "wx-bot-cli",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "WeChat AI Bot CLI and TUI dashboard",
   "license": "MIT",
   "type": "module",
