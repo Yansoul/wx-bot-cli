@@ -26,34 +26,7 @@ npm install -g wx-bot-cli
 
 Requires Node.js >= 20. Verify: `wxbot --version`
 
-### Step 2 — Configure MCP (Claude Desktop / Cursor)
-
-**Claude Desktop** (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS, `%APPDATA%\Claude\claude_desktop_config.json` on Windows):
-
-```json
-{
-  "mcpServers": {
-    "wxbot": {
-      "command": "wxbot-mcp"
-    }
-  }
-}
-```
-
-**Cursor** (`~/.cursor/mcp.json`):
-```json
-{
-  "mcpServers": {
-    "wxbot": { "command": "wxbot-mcp" }
-  }
-}
-```
-
-After writing config: tell user **"请重启 Claude Desktop / Cursor，然后继续"**.
-
-> Skip MCP setup if agent already has Bash access — use CLI commands directly instead.
-
-### Step 3 — Login (QR Code)
+### Step 2 — Login (QR Code)
 
 ```bash
 wxbot login
